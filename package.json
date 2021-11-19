@@ -1,0 +1,16 @@
+{
+  "name": "my-first-source",
+  "version": "1.0.0",
+  "description": "My first source",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prettier": "^2.4.1"
+  }
+}
