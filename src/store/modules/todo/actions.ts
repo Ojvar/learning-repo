@@ -1,7 +1,7 @@
 import { ActionContext, ActionTree } from 'vuex';
 import { State as RootState } from '../../state';
 import { Mutations, MutationType } from './mutations';
-import { State, TodoList } from './state';
+import { State } from './state';
 
 /* API */
 import { loadTodo } from 'src/api';
