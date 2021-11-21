@@ -9,6 +9,6 @@ export type TodoList = Todo[] | null;
 export type State = {
   todoList: TodoList;
 };
-export function state(): State {
-  return { todoList: null };
-}
+export const state: State = {
+  todoList: [{ id: 0, title: 'TEST', completed: false }],
+};

@@ -1,12 +1,12 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <div class="column col-12">
-      <h1>Completed</h1>
-      <pre>{{ completedTodoList }}</pre>
+    <div class="column col-6">
+      <h3 class="text-h3">Completed</h3>
+      <pre>{{ completedcount }}</pre>
     </div>
-    <div class="column col-12">
-      <h1>UnCompleted</h1>
-      <pre>{{ uncompletedTodoList }}</pre>
+    <div class="column col-6">
+      <h3 class="text-h3">UnCompleted</h3>
+      <pre>{{ totalCount }}</pre>
     </div>
   </q-page>
 </template>
@@ -30,10 +30,12 @@ export default defineComponent({
       store.dispatch(ActionType.LOAD_TODO_LIST);
     }
 
+    console.log(store.getters);
+
     return {
+      completedcount: computed(() => store.getters.completedCount),
+      totalCount: computed(() => store.getters.totalCount),
       loadTodoList,
-      completedTodoList: computed(() => store.getters.completedTodoList),
-      uncompletedTodoList: computed(() => store.getters.uncompletedTodoList),
     };
   },
 });

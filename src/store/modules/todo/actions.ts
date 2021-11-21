@@ -7,14 +7,17 @@ export enum ActionType {
   LOAD_TODO_LIST = 'loadTodoList',
 }
 
-type AugmentedActionContext = Omit<ActionContext<State, RootState>, 'commit'> & {
+type AugmentedActionContext = Omit<
+  ActionContext<State, RootState>,
+  'commit'
+> & {
   commit<K extends keyof Mutations>(
     key: K,
     payload: Parameters<Mutations[K]>[1]
   ): ReturnType<Mutations[K]>;
 };
 
-export interface Actions {
+export type Actions = {
   [ActionType.LOAD_TODO_LIST](context: AugmentedActionContext): void;
 };
 

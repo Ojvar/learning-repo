@@ -11,7 +11,7 @@ import { getters, Getters } from './getters';
 import { actions, Actions } from './actions';
 
 export const store: Module<State, RootState> = {
-  namespaced: true,
+  // namespaced: true,
   state,
   getters,
   mutations,
@@ -25,8 +25,6 @@ export type Store<S = State> = Omit<
   VuexStore<S>,
   'getters' | 'commit' | 'dispatch'
 > & {
-  getters: { [K in keyof Getters]: ReturnType<Getters[K]> };
-} & {
   commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
     key: K,
     payload: P,
@@ -38,4 +36,8 @@ export type Store<S = State> = Omit<
     payload?: Parameters<Actions[K]>[1],
     options?: DispatchOptions
   ): ReturnType<Actions[K]>;
+} & {
+  getters: {
+    [K in keyof Getters]: ReturnType<Getters[K]>;
+  };
 };
