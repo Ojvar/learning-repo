@@ -7,18 +7,18 @@ export enum ActionType {
   LOAD_TODO_LIST = 'loadTodoList',
 }
 
-type ActionAguments = Omit<ActionContext<State, RootState>, 'commit'> & {
+type AugmentedActionContext = Omit<ActionContext<State, RootState>, 'commit'> & {
   commit<K extends keyof Mutations>(
     key: K,
     payload: Parameters<Mutations[K]>[1]
   ): ReturnType<Mutations[K]>;
 };
 
-export type Actions = {
-  [ActionType.LOAD_TODO_LIST](context: ActionAguments): Promise<void>;
+export interface Actions {
+  [ActionType.LOAD_TODO_LIST](context: AugmentedActionContext): void;
 };
 
-export const actions: ActionTree<State, RootState> = {
+export const actions: ActionTree<State, RootState> & Actions = {
   [ActionType.LOAD_TODO_LIST]({ commit }): void {
     const todoList: TodoList = [{ id: 1, completed: false, title: 'Todo #1' }];
     commit(MutationType.SET_TODO_LIST, todoList);

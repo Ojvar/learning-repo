@@ -6,10 +6,9 @@ export type Todo = {
 };
 export type TodoList = Todo[] | null;
 
-export interface State {
+export type State = {
   todoList: TodoList;
-}
-
-export default function state(): State {
+};
+export function state(): State {
   return { todoList: null };
 }
