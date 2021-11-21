@@ -10,5 +10,5 @@ export type State = {
   todoList: TodoList;
 };
 export const state: State = {
-  todoList: [{ id: 0, title: 'TEST', completed: false }],
+  todoList: null,
 };

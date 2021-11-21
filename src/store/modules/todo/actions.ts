@@ -3,6 +3,9 @@ import { State as RootState } from '../../state';
 import { Mutations, MutationType } from './mutations';
 import { State, TodoList } from './state';
 
+/* API */
+import { loadTodo } from 'src/api';
+
 export enum ActionType {
   LOAD_TODO_LIST = 'loadTodoList',
 }
@@ -23,7 +26,10 @@ export type Actions = {
 
 export const actions: ActionTree<State, RootState> & Actions = {
   [ActionType.LOAD_TODO_LIST]({ commit }): void {
-    const todoList: TodoList = [{ id: 1, completed: false, title: 'Todo #1' }];
-    commit(MutationType.SET_TODO_LIST, todoList);
+    commit(MutationType.SET_TODO_LIST, []);
+
+    loadTodo()
+      .then((todoList) => commit(MutationType.SET_TODO_LIST, todoList))
+      .catch((err) => console.error(err));
   },
 };
