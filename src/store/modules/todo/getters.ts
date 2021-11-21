@@ -1,11 +1,17 @@
 import { GetterTree } from 'vuex';
-import { StateInterface } from '../index';
-import { ExampleStateInterface } from './state';
+import { State as RootState } from '../../state';
+import { State, TodoList, Todo } from './state';
 
-const getters: GetterTree<ExampleStateInterface, StateInterface> = {
-  someGetter (/* context */) {
-    // your code
-  }
+export type Getters<S = State> = {
+  completedTodoList(state: S): TodoList;
+  uncompletedTodoList(state: S): TodoList;
 };
 
-export default getters;
+export const getters: GetterTree<State, RootState> & Getters = {
+  completedTodoList(state: State): TodoList {
+    return state.todoList && state.todoList.filter((x: Todo) => x.completed);
+  },
+  uncompletedTodoList(state: State): TodoList {
+    return state.todoList && state.todoList.filter((x: Todo) => !x.completed);
+  },
+};

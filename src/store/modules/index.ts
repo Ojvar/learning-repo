@@ -1,1 +1,1 @@
-export { default as todoStore, State as TodoState } from './todo';
+export * as Todo from './todo';

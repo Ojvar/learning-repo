@@ -8,6 +8,7 @@ import {
 } from 'vuex';
 
 import { Store, State, modules } from './state';
+export * from './state';
 
 // provide typings for `useStore` helper
 export const storeKey: InjectionKey<VuexStore<State>> = Symbol('vuex-key');

@@ -1,6 +1,7 @@
 export type Todo = {
+  id: number;
   checkDate?: Date;
-  checked: boolean;
+  completed: boolean;
   title: string;
 };
 export type TodoList = Todo[] | null;
